@@ -46,5 +46,6 @@ export default {
     flex-direction: column;
     background: url("http://www.imooc.com/newyear/static/page1_bg.png") center;
     gap: 2rem;
+    overflow: hidden;
 }
 </style>

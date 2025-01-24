@@ -13,6 +13,10 @@ const routes = [
         path:'/home',
         name:'Home',
         component:()=>import('../View/Home.vue')
+    },{
+        path:'/firework',
+        name:'Firework',
+        component:()=>import('../components/FireWork.vue')
     }
 ];
 
