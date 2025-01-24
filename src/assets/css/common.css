@@ -1,0 +1,37 @@
+.button{
+    backdrop-filter: blur(5px) brightness(90%);
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+.button:hover{
+    backdrop-filter: blur(5px) brightness(100%);
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.button:focus{
+    outline: none;
+}
+
+.input{
+    backdrop-filter: blur(5px) brightness(90%);
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    padding: 20px 40px;
+    border: none;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.input:focus{
+    outline: none;
+}
+
+.input::placeholder{
+    color: #e5e5e5;
+}
