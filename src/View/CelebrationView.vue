@@ -17,7 +17,7 @@
   </div>
   <div class="celebration animate__animated animate__fadeIn">
     <p style="font-size: 1.5rem; position: absolute; bottom: 2px">
-      现在是 {{ currentTimeShow }}
+      {{ currentTimeShow }}
     </p>
     <div id="frame" v-if="!exceed">
       {{ distance.day }}天{{ distance.hour }}小时{{ distance.minute }}分钟{{
@@ -25,7 +25,7 @@
       }}秒
     </div>
     <div id="frame" v-if="exceed">
-      新年快乐！
+      新年快乐! 🎉🎉🎉
     </div>
     <img
       src="https://www.imooc.com/newyear/static/page1_text.png"
@@ -121,7 +121,7 @@ export default {
         return;
       }
       const now = new Date();
-      const target = new Date("2025-01-24 20:03:00");
+      const target = new Date("2025-01-29 00:00:00");
       const diff = target - now;
       distance.value.day = Math.floor(diff / (1000 * 60 * 60 * 24));
       distance.value.hour = Math.floor(
@@ -172,7 +172,7 @@ export default {
       }, 400);
 
       
-      ElMessage.success("欢迎" + userName.value + "参加我们的活动");
+      ElMessage.success("欢迎 " + userName.value + " 来到新年庆祝会!🎆🎆🎆");
     });
 
     return {
@@ -227,6 +227,7 @@ export default {
   background-image: url(../assets/png/frame.png);
   background-repeat: no-repeat;
   background-size: cover;
+  text-align: center;
 }
 
 @keyframes turn {
