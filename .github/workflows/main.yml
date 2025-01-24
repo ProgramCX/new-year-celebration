@@ -1,9 +1,9 @@
-name: Deploy to GitHub Pages
+name: Deploy to Cloud Server
  
 on:
   push:
     branches:
-      - main
+      - master
  
 jobs:
   build:
