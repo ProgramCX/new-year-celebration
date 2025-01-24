@@ -24,11 +24,6 @@ jobs:
     - name: Build
       run: npm run build
  
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.KEY }}
-        publish_dir: ./dist
 
     - name: Deploy to Cloud Server
       uses: burnett01/rsync-deployments@6.0.0
