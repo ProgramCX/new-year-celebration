@@ -27,6 +27,7 @@
     <div id="frame" v-if="exceed">
       新年快乐! 🎉🎉🎉
     </div>
+    <WishComponent v-if="!exceed" :user-name="userName"/>
     <img
       src="https://www.imooc.com/newyear/static/page1_text.png"
       style="height: 50vh"
@@ -40,7 +41,7 @@
   </div>
   <div id="canvas">
     <canvas ref="canvasStar">你的浏览器不支持canvas</canvas>
-    <FireWork :is-visible="exceed" style="z-index: 1" />
+    <FireWork :is-visible="exceed" style="z-index: 0" />
   </div>
 </template>
 
@@ -49,10 +50,10 @@ import { ElMessage } from "element-plus";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import FireWork from "@/components/FireWork.vue";
-
+import WishComponent from "@/components/WishComponent.vue";
 export default {
   name: "CelebrationView",
-  components: { FireWork },
+  components: { FireWork, WishComponent },
   setup() {
     const route = useRoute();
     const userName = ref(route.params.id);
@@ -183,6 +184,7 @@ export default {
       audio1,
       countDownAudio,
       exceed,
+      userName
     };
   },
 };
@@ -200,7 +202,7 @@ export default {
   flex-direction: column;
   background: url("http://www.imooc.com/newyear/static/page1_bg.png") center;
   gap: 2rem;
-  z-index: 2;
+  z-index: 1; /* 确保 .celebration 的 z-index 高于 #canvas */
   color: #fff;
 }
 
@@ -210,14 +212,15 @@ export default {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 0;
+  z-index: 0; /* 确保 #canvas 的 z-index 低于 .celebration */
+  pointer-events: none; /* 确保 #canvas 不会阻止点击事件 */
 }
 
 #lantern {
   position: absolute;
   top: -10px;
   animation: turn 2s infinite ease-in-out;
-  z-index: 1;
+  z-index: 1; /* 确保 #lantern 的 z-index 高于 #canvas */
 }
 
 #frame {
