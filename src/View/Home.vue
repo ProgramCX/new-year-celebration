@@ -8,7 +8,7 @@
     />
     <input
       type="text"
-      placeholder="Enter your name"
+      placeholder="请输入你的昵称"
       class="input animate__animated animate__bounceInDown"
       ref="input"
     />
