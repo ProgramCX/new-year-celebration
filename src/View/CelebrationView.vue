@@ -16,7 +16,7 @@
     ></audio>
   </div>
   <div class="celebration animate__animated animate__fadeIn">
-    <p style="font-size: 1.5rem; position: absolute; bottom: 2px">
+    <p style="font-size: 1rem; position: absolute; bottom: 2px">
       {{ currentTimeShow }}
     </p>
     <div id="frame" v-if="!exceed">
@@ -224,7 +224,7 @@ export default {
 }
 
 #frame {
-  font-size: 1rem;
+  font-size: 1.5rem;
   padding: 25px 40px;
   height: 80px;
   background-image: url(../assets/png/frame.png);
