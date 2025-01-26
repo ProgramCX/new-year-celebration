@@ -9,6 +9,14 @@ module.exports = defineConfig({
       msTileImage: 'logo.png'
     }
   },
+  chainWebpack: config => {
+    config
+    .plugin('html')
+    .tap(args => {
+    args[0].title = '你好，2025';
+    return args;
+    });
+    },
   transpileDependencies: true,
   publicPath: './',
   devServer: {
