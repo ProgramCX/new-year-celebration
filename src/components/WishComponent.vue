@@ -67,7 +67,8 @@
       const wishList = ref([]);
       const activeName = ref("myWish");
       const name = ref(props.userName);
-
+      const errorShowed = ref(false);
+      
       const showMessage = (message, type = "success") => {
         ElMessage({
           message,
@@ -76,9 +77,12 @@
       };
 
       const showError = (message) => {
-        ElMessageBox.alert(message, "错误", {
-          confirmButtonText: "确定",
-        });
+        if(!errorShowed.value) {
+          errorShowed.value = true;
+          ElMessageBox.alert(message, "错误", {
+            confirmButtonText: "确定",
+          });
+        }
       };
 
       const submitWish = async () => {
@@ -137,6 +141,7 @@
         setInterval(() => {
           getWishList();
         }, 10000);
+        
       });
 
       watch(wishContent, (newValue) => {

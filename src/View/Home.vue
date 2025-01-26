@@ -38,14 +38,18 @@ export default {
     };
 
     const checkUserNameExists = async () => {
-        console.log(input.value.value);
-        
-      if (await userExists(input.value.value) && !nameCorrect.value) {
-        ElMessageBox.confirm("昵称已经存在。如果不是你的昵称，请更改!", "提示", {
-          confirmButtonText: "是我的昵称",
-          cancelButtonText: "不是我的昵称",
-          type: "warning",
-        })
+      console.log(input.value.value);
+
+      if ((await userExists(input.value.value)) && !nameCorrect.value) {
+        ElMessageBox.confirm(
+          "昵称已经存在。如果不是你的昵称，请更改!",
+          "提示",
+          {
+            confirmButtonText: "是我的昵称",
+            cancelButtonText: "不是我的昵称",
+            type: "warning",
+          }
+        )
           .then(() => {
             window.localStorage.setItem("userName", input.value.value);
             router.push("/celebration/" + input.value.value);
@@ -75,7 +79,7 @@ export default {
         return;
       }
 
-      if(window.localStorage.getItem("userName")) {
+      if (window.localStorage.getItem("userName")) {
         ElMessageBox.confirm("你确定要更换名字吗？", "提示", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
@@ -85,7 +89,7 @@ export default {
             checkUserNameExists();
           })
           .catch(() => {
-              return;
+            return;
           });
       } else {
         checkUserNameExists();
@@ -94,6 +98,23 @@ export default {
 
     onMounted(() => {
       input.value.value = window.localStorage.getItem("userName") || "";
+      ElMessageBox.alert(
+        [
+          "该网站是一个简单的春节倒计时和许愿网站，大年初一零时整，在春节倒计时页面会有绚丽的彩蛋，大家一起来庆祝新年吧！🎉🎉🎉",
+          "⚠️⚠️⚠️声明：禁止任何通过任何手段（如DDOS）破坏该网站计算机系统，如发现此类违法行为，将报警严肃处理！！！",
+          "🧑🏼‍💻🧑🏼‍💻🧑🏼‍💻该网站基于 Vue.js 3、Spring Boot、MyBatis 框架开发，所有源代码开源：",
+          "前端地址：https://github.com/ProgramCX/new-year-celebration",
+          "后端地址：https://github.com/ProgramCX/new-year-celebration-backend",
+          "如果您发现网站内有任何BUG，欢迎向网站开发和维护者 程旭 反馈！",
+          "QQ: 2860245799 邮箱：ProgramCX@outlook.com 微信：program-chengxu",
+        ].join("<br/>"),
+        "欢迎来到新年庆祝网站！",
+        {
+          confirmButtonText: "确定",
+          type: "info",
+          dangerouslyUseHTMLString: true, // 允许 HTML 渲染
+        }
+      ).catch(() => {});
     });
 
     return {

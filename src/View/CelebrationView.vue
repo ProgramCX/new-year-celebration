@@ -27,7 +27,7 @@
     <div id="frame" v-if="exceed">
       新年快乐! 🎉🎉🎉
     </div>
-    <WishComponent v-if="!exceed" :user-name="userName"/>
+    <WishComponent :user-name="userName"/>
     <img
       src="https://www.imooc.com/newyear/static/page1_text.png"
       style="height: 50vh"
@@ -173,7 +173,7 @@ export default {
       }, 400);
 
       
-      ElMessage.success("欢迎 " + userName.value + " 来到新年庆祝会!🎆🎆🎆");
+      ElMessage.success("欢迎 " + userName.value + " 来到新年庆祝网站!🎆🎆🎆");
     });
 
     return {
@@ -224,7 +224,7 @@ export default {
 }
 
 #frame {
-  font-size: 1.5rem;
+  font-size: 1rem;
   padding: 25px 40px;
   height: 80px;
   background-image: url(../assets/png/frame.png);
