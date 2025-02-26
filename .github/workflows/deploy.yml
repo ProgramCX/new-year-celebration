@@ -1,0 +1,42 @@
+name: Deploy to Mini Server
+ 
+on:
+  push:
+    branches:
+      - master
+ 
+jobs:
+  build:
+    runs-on: windows-latest
+ 
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+ 
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+ 
+    - name: Install dependencies
+      run: npm install
+ 
+    - name: Build
+      run: npm run build
+  
+    - name: Deploy to Mini Server
+      uses: burnett01/rsync-deployments@6.0.0
+      with:
+                  # -a: 表示以归档模式进行同步，保留文件的所有属性和权限
+                  # -v: 表示输出详细的同步过程信息
+                  # -z: 表示在传输文件时进行压缩，以减少传输时间和带宽
+                  # -r: 表示递归地同步目录及其子目录
+                  # --delete: 表示在目标目录中删除源目录中不存在的文件
+          switches: -avzr --delete
+          path: ./dist/
+          remote_path: C:/Program Files/nginx/2025-html/
+          remote_host: ${{ secrets.DEPLOY_HOST }} # 远程主机 IP
+          remote_port: ${{ secrets.DEPLOY_PORT_2 }} # ssh 端口，默认为 22
+          remote_user: ${{ secrets.DEPLOY_USER }} # ssh user
+          remote_key: ${{ secrets.DEPLOY_KEY_2 }} # ssh 私钥（云服务器创建密钥，下载的key.pem文件）
+  
